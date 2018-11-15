@@ -4,6 +4,10 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { Photo } from './photo.entity';
 import { PhotoService } from './photo.service';
+import * as fs from 'fs';
+
+const im = require('imagemagick');
+
 
 @Controller('photo')
 export class PhotoController {
@@ -32,6 +36,17 @@ export class PhotoController {
   }))
   @Param('title')
   uploadFile(@UploadedFile() file, @Req() req) {
+
+    im.crop({
+      srcPath: './uploads/images/' + file.filename,
+      dstPath: './cropped.jpg',
+      width: 10,
+      height: 10,
+      quality: 1,
+      gravity: 'North',
+    }, function(err, stdout, stderr) {
+    });
+
 
     const photo = new Photo();
     photo.name = req.body.title;
