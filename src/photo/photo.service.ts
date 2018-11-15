@@ -8,9 +8,15 @@ export class PhotoService {
   constructor(
     @InjectRepository(Photo)
     private readonly photoRepository: Repository<Photo>,
-  ) {}
+  ) {
+  }
 
   async findAll(): Promise<Photo[]> {
     return await this.photoRepository.find();
+  }
+
+  async savePhoto(photo: Photo) {
+    await this.photoRepository.save(photo);
+    console.log('Photo has been saved');
   }
 }
