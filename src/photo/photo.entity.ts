@@ -14,6 +14,9 @@ export class Photo {
   @Column()
   filename: string;
 
+  @Column({ length: 500 })
+  previewImage: string;
+
   @Column('int')
   views: number;
 

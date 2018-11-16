@@ -17,6 +17,5 @@ export class PhotoService {
 
   async savePhoto(photo: Photo) {
     await this.photoRepository.save(photo);
-    console.log('Photo has been saved');
   }
 }
